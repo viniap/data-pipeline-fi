@@ -2,3 +2,48 @@
 #
 # Documentation for this file format can be found in "The Data Catalog"
 # Link: https://docs.kedro.org/en/stable/data/data_catalog.html
+
+_csv: &csv
+  type: pandas.CSVDataSet
+  load_args:
+    encoding: "cp1252"
+    sep: ";"
+  save_args:
+    encoding: "utf-8"
+    sep: ";"
+
+cda_fi_BLC_1_202212:
+  <<: *csv
+  filepath: data/01_raw/cda_fi_BLC_1_202212.csv
+
+cda_fi_BLC_2_202212:
+  <<: *csv
+  filepath: data/01_raw/cda_fi_BLC_2_202212.csv
+
+cda_fi_BLC_3_202212:
+  <<: *csv
+  filepath: data/01_raw/cda_fi_BLC_3_202212.csv
+
+cda_fi_BLC_4_202212:
+  <<: *csv
+  filepath: data/01_raw/cda_fi_BLC_4_202212.csv
+
+cda_fi_BLC_5_202212:
+  <<: *csv
+  filepath: data/01_raw/cda_fi_BLC_5_202212.csv
+
+cda_fi_BLC_6_202212:
+  <<: *csv
+  filepath: data/01_raw/cda_fi_BLC_6_202212.csv
+
+cda_fi_BLC_7_202212:
+  <<: *csv
+  filepath: data/01_raw/cda_fi_BLC_7_202212.csv
+
+cda_fi_BLC_8_202212:
+  <<: *csv
+  filepath: data/01_raw/cda_fi_BLC_8_202212.csv
+
+cda_fi_BLC_all_202212:
+  <<: *csv
+  filepath: data/02_intermediate/cda_fi_BLC_all_202212.csv

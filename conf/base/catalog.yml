@@ -47,3 +47,13 @@ cda_fi_BLC_8_202212:
 cda_fi_BLC_all_202212:
   <<: *csv
   filepath: data/02_intermediate/cda_fi_BLC_all_202212.csv
+  load_args:
+    encoding: "utf-8"
+    sep: ";"
+
+cda_fi_BLC_all_202212_aggregated:
+  <<: *csv
+  filepath: data/05_model_input/cda_fi_BLC_all_202212_aggregated.csv
+  load_args:
+    encoding: "utf-8"
+    sep: ";"

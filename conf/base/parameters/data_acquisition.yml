@@ -1,0 +1,20 @@
+# This is a boilerplate parameters config generated for pipeline 'data_acquisition'
+# using Kedro 0.18.7.
+#
+# Documentation for this file format can be found in "Parameters"
+# Link: https://docs.kedro.org/en/0.18.7/kedro_project_setup/configuration.html#parameters
+
+# 1  - Jan
+# 2  - Feb
+# 3  - Mar
+# 4  - Apr
+# 5  - May
+# 6  - Jun
+# 7  - Jul
+# 8  - Aug
+# 9  - Sep
+# 10 - Oct
+# 11 - Nov
+# 12 - Dec
+# 13 - All
+months: 1,2

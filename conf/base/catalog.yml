@@ -12,6 +12,15 @@ _csv: &csv
     encoding: "utf-8"
     sep: ";"
 
+_sql: &sql
+  type: pandas.SQLTableDataSet
+  credentials: postgresql_credentials
+  load_args:
+    schema: public
+  save_args:
+    schema: public
+    if_exists: replace
+
 cda_fi_BLC_1_202212:
   <<: *csv
   filepath: data/01_raw/cda_fi_BLC_1_202212.csv
@@ -51,9 +60,24 @@ cda_fi_BLC_all_202212:
     encoding: "utf-8"
     sep: ";"
 
-cda_fi_BLC_all_202212_aggregated:
+vl_mercado:
   <<: *csv
-  filepath: data/05_model_input/cda_fi_BLC_all_202212_aggregated.csv
+  filepath: data/05_model_input/vl_mercado.csv
   load_args:
     encoding: "utf-8"
     sep: ";"
+
+diversificacoes:
+  <<: *csv
+  filepath: data/05_model_input/diversificacoes.csv
+  load_args:
+    encoding: "utf-8"
+    sep: ";"
+
+vl_mercado_table_dataset:
+  <<: *sql
+  table_name: vl_mercado
+
+diversificacoes_table_dataset:
+  <<: *sql
+  table_name: diversificacoes

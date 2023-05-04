@@ -5,7 +5,7 @@ generated using Kedro 0.18.7
 
 from kedro.pipeline import Pipeline, node, pipeline
 
-from .nodes import merge_dataframes, aggregate
+from .nodes import merge_dataframes, sum_vl_mercado, encode_tp_ativo, export_to_postgresql
 
 
 def create_pipeline(**kwargs) -> Pipeline:
@@ -17,9 +17,21 @@ def create_pipeline(**kwargs) -> Pipeline:
             name="merge_dataframes_node",
         ),
         node(
-            func=aggregate,
+            func=sum_vl_mercado,
             inputs="cda_fi_BLC_all_202212",
-            outputs="cda_fi_BLC_all_202212_aggregated",
-            name="aggregate_node",
+            outputs="vl_mercado",
+            name="sum_vl_mercado_node",
+        ),
+        node(
+            func=encode_tp_ativo,
+            inputs="cda_fi_BLC_all_202212",
+            outputs="diversificacoes",
+            name="encode_tp_ativo_node",
+        ),
+        node(
+            func=export_to_postgresql,
+            inputs=["vl_mercado", "diversificacoes"],
+            outputs=["vl_mercado_table_dataset", "diversificacoes_table_dataset"],
+            name="export_to_postgresql_node",
         ),
     ])

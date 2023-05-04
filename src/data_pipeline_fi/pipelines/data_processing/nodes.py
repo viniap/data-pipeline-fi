@@ -6,7 +6,7 @@ generated using Kedro 0.18.7
 import pandas as pd
 import numpy as np
 from sklearn.preprocessing import OneHotEncoder
-from typing import List
+from typing import Tuple
 
 
 def _convert_to_date(date: pd.Series) -> pd.Series:
@@ -29,7 +29,7 @@ def _convert_to_int(qt: pd.Series) -> pd.Series:
     return qt
 
 
-def merge_dataframes(*dfs: List[pd.DataFrame]) -> pd.DataFrame:
+def merge_dataframes(*dfs: Tuple[pd.DataFrame]) -> pd.DataFrame:
     """Merges the raw dataframes.
 
     Args:
@@ -64,12 +64,12 @@ def merge_dataframes(*dfs: List[pd.DataFrame]) -> pd.DataFrame:
     df_merged["CD_SELIC"] = _convert_to_int(df_merged["CD_SELIC"])
     df_merged["CD_SELIC"] = df_merged["CD_SELIC"].astype(str).replace("<NA>", np.nan)
 
-    # print(df_merged.info())
+    print(df_merged.info())
 
     return df_merged
 
 
-def aggregate(df: pd.DataFrame) -> pd.DataFrame:
+def sum_vl_mercado(df: pd.DataFrame) -> pd.DataFrame:
     """Merges the raw dataframes.
 
     Args:
@@ -78,12 +78,31 @@ def aggregate(df: pd.DataFrame) -> pd.DataFrame:
         Aggregated dataframe.
     """
 
-    # Remove all columns that have non-values quantity greater than 4 (to include DENOM_SOCIAL, which has 4 non-values)
-    df = df[df.columns[df.count() > len(df.index)-5]]
-    # Remove the 4 rows that has 4 non-values in DENOM_SOCIAL
+    # Keep only the columns that identify a fund + TP_ATIVO + VL_MERC_POS_FINAL
+    df = df[["TP_FUNDO", "CNPJ_FUNDO", "DENOM_SOCIAL", "TP_ATIVO", "VL_MERC_POS_FINAL"]]
+    # Remove the rows that have non-values
     df = df.dropna()
     df = df.reset_index(drop=True)
-    print(df.info())
+
+    grouped_df = df.groupby(["CNPJ_FUNDO", "DENOM_SOCIAL", "TP_FUNDO", "TP_ATIVO"]).sum().reset_index()
+    return grouped_df
+
+
+def encode_tp_ativo(df: pd.DataFrame) -> pd.DataFrame:
+    """Merges the raw dataframes.
+
+    Args:
+        df: Merged dataframe.
+    Returns:
+        Aggregated dataframe.
+    """
+
+    # Keep only the columns that identify a fund + TP_ATIVO
+    df = df[["TP_FUNDO", "CNPJ_FUNDO", "DENOM_SOCIAL", "TP_ATIVO"]]
+    # Remove the rows that have non-values
+    df = df.dropna()
+    df = df.reset_index(drop=True)
+    # print(df.info())
 
     # Create a one-hot encoder object
     encoder = OneHotEncoder()
@@ -107,3 +126,17 @@ def aggregate(df: pd.DataFrame) -> pd.DataFrame:
     new_df = new_df.drop(columns=["TP_ATIVO"])
 
     return new_df
+
+
+def export_to_postgresql(*df: Tuple[pd.DataFrame]) -> Tuple[pd.DataFrame]:
+    """Export the dataframes to a PostgreSQL database.
+
+    Args:
+        df: List of dataframes.
+    Returns:
+        None.
+    """
+
+    return df
+
+

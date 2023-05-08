@@ -1,5 +1,16 @@
-# This is a boilerplate parameters config generated for pipeline 'data_processing'
-# using Kedro 0.18.7.
-#
-# Documentation for this file format can be found in "Parameters"
-# Link: https://docs.kedro.org/en/0.18.7/kedro_project_setup/configuration.html#parameters
+cda_fi_BLC_1_202201: cda_fi_BLC_1_202201
+cda_fi_BLC_1_202202: cda_fi_BLC_1_202202
+cda_fi_BLC_2_202201: cda_fi_BLC_2_202201
+cda_fi_BLC_2_202202: cda_fi_BLC_2_202202
+cda_fi_BLC_3_202201: cda_fi_BLC_3_202201
+cda_fi_BLC_3_202202: cda_fi_BLC_3_202202
+cda_fi_BLC_4_202201: cda_fi_BLC_4_202201
+cda_fi_BLC_4_202202: cda_fi_BLC_4_202202
+cda_fi_BLC_5_202201: cda_fi_BLC_5_202201
+cda_fi_BLC_5_202202: cda_fi_BLC_5_202202
+cda_fi_BLC_6_202201: cda_fi_BLC_6_202201
+cda_fi_BLC_6_202202: cda_fi_BLC_6_202202
+cda_fi_BLC_7_202201: cda_fi_BLC_7_202201
+cda_fi_BLC_7_202202: cda_fi_BLC_7_202202
+cda_fi_BLC_8_202201: cda_fi_BLC_8_202201
+cda_fi_BLC_8_202202: cda_fi_BLC_8_202202

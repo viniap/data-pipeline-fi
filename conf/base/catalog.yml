@@ -81,3 +81,4 @@ vl_mercado_table_dataset:
 diversificacoes_table_dataset:
   <<: *sql
   table_name: diversificacoes
+

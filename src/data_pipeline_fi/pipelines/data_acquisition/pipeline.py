@@ -19,7 +19,7 @@ def create_pipeline(**kwargs) -> Pipeline:
         node(
             func=download_files,
             inputs="url_list",
-            outputs="teste",
+            outputs="filenames",
             name="download_files_node"
         ),
     ])

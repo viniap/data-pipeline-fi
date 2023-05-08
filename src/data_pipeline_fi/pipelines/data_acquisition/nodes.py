@@ -4,7 +4,7 @@ generated using Kedro 0.18.7
 """
 
 from typing import Union, List, Tuple
-import requests, zipfile, io, re
+import requests, zipfile, io, re, yaml
 
 
 def generate_urls(months: Union[str, List[str]]) -> Tuple[str]:
@@ -39,7 +39,7 @@ def generate_urls(months: Union[str, List[str]]) -> Tuple[str]:
 
 def download_files(url_list: Tuple[str]) -> Tuple[str]:
     regex = re.compile(r"cda_fi_BLC_[0-9]_2022[0-1][0-9].csv")
-    filenames_list = []
+    files_list = []
     for url in url_list:
         response = requests.get(url)
         if response.ok:
@@ -47,7 +47,33 @@ def download_files(url_list: Tuple[str]) -> Tuple[str]:
             filenames = z.namelist()
             filenames = list(filter(regex.search, filenames))
             # print(filenames)
-            filenames_list = filenames_list + filenames
+            files_list = files_list + filenames
             z.extractall("data/01_raw", filenames)
+
+    catalog_custom = dict()
+    parameters = dict()
+    filenames_list = []
+    for file in files_list:
+        filename = f"{file.replace('.csv', '')}"
+        filenames_list.append(filename)
+        parameters[filename] = filename
+        catalog_custom[filename] = {
+            "type": "pandas.CSVDataSet",
+            "load_args": {
+                "encoding": "cp1252",
+                "sep": ";"
+            },
+            "save_args": {
+                "encoding": "utf-8",
+                "sep": ";"
+            },
+            "filepath": f"data/01_raw/{file}"
+        }
+
+    with open("conf/base/catalog_custom.yml", "w") as file:
+        yaml.dump(catalog_custom, file)
+
+    with open("conf/base/parameters/data_processing.yml", "w") as file:
+        yaml.dump(parameters, file)
 
     return tuple(filenames_list)

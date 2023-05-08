@@ -7,12 +7,16 @@ from kedro.pipeline import Pipeline, node, pipeline
 
 from .nodes import merge_dataframes, sum_vl_mercado, encode_tp_ativo, export_to_postgresql
 
+import yaml
+
 
 def create_pipeline(**kwargs) -> Pipeline:
+    with open("conf/base/parameters/data_processing.yml") as file:
+        data_processing_parameters = yaml.load(file, Loader=yaml.FullLoader)
     return pipeline([
         node(
             func=merge_dataframes,
-            inputs=[f"cda_fi_BLC_{i}_202212" for i in range(1, 9)],
+            inputs=[key for key, value in data_processing_parameters.items()],
             outputs="cda_fi_BLC_all_202212",
             name="merge_dataframes_node",
         ),

@@ -39,7 +39,8 @@ def merge_dataframes(*dfs: Tuple[pd.DataFrame]) -> pd.DataFrame:
     """
 
     # Concatenate all dataframes in one single dataframe
-    df_merged = pd.concat(dfs)
+    print(dfs[-1])
+    df_merged = pd.concat(dfs[:-1])
 
     # Replace any blank cells that might exist with NaN
     df_merged = df_merged.replace(r'^\s*$', np.nan, regex=True)

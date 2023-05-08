@@ -1,5 +1,5 @@
-cda_fi_BLC_1_202201:
-  filepath: data/01_raw/cda_fi_BLC_1_202201.csv
+cda_fi_BLC_1_202206:
+  filepath: data/01_raw/cda_fi_BLC_1_202206.csv
   load_args:
     encoding: cp1252
     sep: ;
@@ -7,8 +7,8 @@ cda_fi_BLC_1_202201:
     encoding: utf-8
     sep: ;
   type: pandas.CSVDataSet
-cda_fi_BLC_1_202202:
-  filepath: data/01_raw/cda_fi_BLC_1_202202.csv
+cda_fi_BLC_2_202206:
+  filepath: data/01_raw/cda_fi_BLC_2_202206.csv
   load_args:
     encoding: cp1252
     sep: ;
@@ -16,8 +16,8 @@ cda_fi_BLC_1_202202:
     encoding: utf-8
     sep: ;
   type: pandas.CSVDataSet
-cda_fi_BLC_2_202201:
-  filepath: data/01_raw/cda_fi_BLC_2_202201.csv
+cda_fi_BLC_3_202206:
+  filepath: data/01_raw/cda_fi_BLC_3_202206.csv
   load_args:
     encoding: cp1252
     sep: ;
@@ -25,8 +25,8 @@ cda_fi_BLC_2_202201:
     encoding: utf-8
     sep: ;
   type: pandas.CSVDataSet
-cda_fi_BLC_2_202202:
-  filepath: data/01_raw/cda_fi_BLC_2_202202.csv
+cda_fi_BLC_4_202206:
+  filepath: data/01_raw/cda_fi_BLC_4_202206.csv
   load_args:
     encoding: cp1252
     sep: ;
@@ -34,8 +34,8 @@ cda_fi_BLC_2_202202:
     encoding: utf-8
     sep: ;
   type: pandas.CSVDataSet
-cda_fi_BLC_3_202201:
-  filepath: data/01_raw/cda_fi_BLC_3_202201.csv
+cda_fi_BLC_5_202206:
+  filepath: data/01_raw/cda_fi_BLC_5_202206.csv
   load_args:
     encoding: cp1252
     sep: ;
@@ -43,8 +43,8 @@ cda_fi_BLC_3_202201:
     encoding: utf-8
     sep: ;
   type: pandas.CSVDataSet
-cda_fi_BLC_3_202202:
-  filepath: data/01_raw/cda_fi_BLC_3_202202.csv
+cda_fi_BLC_6_202206:
+  filepath: data/01_raw/cda_fi_BLC_6_202206.csv
   load_args:
     encoding: cp1252
     sep: ;
@@ -52,8 +52,8 @@ cda_fi_BLC_3_202202:
     encoding: utf-8
     sep: ;
   type: pandas.CSVDataSet
-cda_fi_BLC_4_202201:
-  filepath: data/01_raw/cda_fi_BLC_4_202201.csv
+cda_fi_BLC_7_202206:
+  filepath: data/01_raw/cda_fi_BLC_7_202206.csv
   load_args:
     encoding: cp1252
     sep: ;
@@ -61,80 +61,8 @@ cda_fi_BLC_4_202201:
     encoding: utf-8
     sep: ;
   type: pandas.CSVDataSet
-cda_fi_BLC_4_202202:
-  filepath: data/01_raw/cda_fi_BLC_4_202202.csv
-  load_args:
-    encoding: cp1252
-    sep: ;
-  save_args:
-    encoding: utf-8
-    sep: ;
-  type: pandas.CSVDataSet
-cda_fi_BLC_5_202201:
-  filepath: data/01_raw/cda_fi_BLC_5_202201.csv
-  load_args:
-    encoding: cp1252
-    sep: ;
-  save_args:
-    encoding: utf-8
-    sep: ;
-  type: pandas.CSVDataSet
-cda_fi_BLC_5_202202:
-  filepath: data/01_raw/cda_fi_BLC_5_202202.csv
-  load_args:
-    encoding: cp1252
-    sep: ;
-  save_args:
-    encoding: utf-8
-    sep: ;
-  type: pandas.CSVDataSet
-cda_fi_BLC_6_202201:
-  filepath: data/01_raw/cda_fi_BLC_6_202201.csv
-  load_args:
-    encoding: cp1252
-    sep: ;
-  save_args:
-    encoding: utf-8
-    sep: ;
-  type: pandas.CSVDataSet
-cda_fi_BLC_6_202202:
-  filepath: data/01_raw/cda_fi_BLC_6_202202.csv
-  load_args:
-    encoding: cp1252
-    sep: ;
-  save_args:
-    encoding: utf-8
-    sep: ;
-  type: pandas.CSVDataSet
-cda_fi_BLC_7_202201:
-  filepath: data/01_raw/cda_fi_BLC_7_202201.csv
-  load_args:
-    encoding: cp1252
-    sep: ;
-  save_args:
-    encoding: utf-8
-    sep: ;
-  type: pandas.CSVDataSet
-cda_fi_BLC_7_202202:
-  filepath: data/01_raw/cda_fi_BLC_7_202202.csv
-  load_args:
-    encoding: cp1252
-    sep: ;
-  save_args:
-    encoding: utf-8
-    sep: ;
-  type: pandas.CSVDataSet
-cda_fi_BLC_8_202201:
-  filepath: data/01_raw/cda_fi_BLC_8_202201.csv
-  load_args:
-    encoding: cp1252
-    sep: ;
-  save_args:
-    encoding: utf-8
-    sep: ;
-  type: pandas.CSVDataSet
-cda_fi_BLC_8_202202:
-  filepath: data/01_raw/cda_fi_BLC_8_202202.csv
+cda_fi_BLC_8_202206:
+  filepath: data/01_raw/cda_fi_BLC_8_202206.csv
   load_args:
     encoding: cp1252
     sep: ;

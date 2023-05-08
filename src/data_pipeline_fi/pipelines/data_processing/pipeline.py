@@ -16,7 +16,7 @@ def create_pipeline(**kwargs) -> Pipeline:
     return pipeline([
         node(
             func=merge_dataframes,
-            inputs=[key for key, value in data_processing_parameters.items()],
+            inputs=[key for key, value in data_processing_parameters.items()] + ["filenames"],
             outputs="cda_fi_BLC_all_202212",
             name="merge_dataframes_node",
         ),

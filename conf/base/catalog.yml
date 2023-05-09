@@ -21,41 +21,9 @@ _sql: &sql
     schema: public
     if_exists: replace
 
-cda_fi_BLC_1_202212:
+cda_fi_BLC_all:
   <<: *csv
-  filepath: data/01_raw/cda_fi_BLC_1_202212.csv
-
-cda_fi_BLC_2_202212:
-  <<: *csv
-  filepath: data/01_raw/cda_fi_BLC_2_202212.csv
-
-cda_fi_BLC_3_202212:
-  <<: *csv
-  filepath: data/01_raw/cda_fi_BLC_3_202212.csv
-
-cda_fi_BLC_4_202212:
-  <<: *csv
-  filepath: data/01_raw/cda_fi_BLC_4_202212.csv
-
-cda_fi_BLC_5_202212:
-  <<: *csv
-  filepath: data/01_raw/cda_fi_BLC_5_202212.csv
-
-cda_fi_BLC_6_202212:
-  <<: *csv
-  filepath: data/01_raw/cda_fi_BLC_6_202212.csv
-
-cda_fi_BLC_7_202212:
-  <<: *csv
-  filepath: data/01_raw/cda_fi_BLC_7_202212.csv
-
-cda_fi_BLC_8_202212:
-  <<: *csv
-  filepath: data/01_raw/cda_fi_BLC_8_202212.csv
-
-cda_fi_BLC_all_202212:
-  <<: *csv
-  filepath: data/02_intermediate/cda_fi_BLC_all_202212.csv
+  filepath: data/02_intermediate/cda_fi_BLC_all.csv
   load_args:
     encoding: "utf-8"
     sep: ";"

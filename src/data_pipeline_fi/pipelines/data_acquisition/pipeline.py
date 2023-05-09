@@ -1,6 +1,17 @@
 """
-This is a boilerplate pipeline 'data_acquisition'
-generated using Kedro 0.18.7
+pipeline.py
+
+This is the pipeline 'data_acquisition', which is responsible for getting the datasets.
+
+Author:
+    Vinícius Peres (viniaperes@gmail.com)
+
+Version:
+    1.0.0
+
+Release Date:
+    May 9th, 2023
+
 """
 
 from kedro.pipeline import Pipeline, node, pipeline

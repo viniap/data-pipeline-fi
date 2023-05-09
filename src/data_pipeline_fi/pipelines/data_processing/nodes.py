@@ -1,12 +1,24 @@
 """
-This is a boilerplate pipeline 'data_processing'
-generated using Kedro 0.18.7
+nodes.py
+
+These are the nodes from pipeline 'data_processing'.
+
+Author:
+    Vinícius Peres (viniaperes@gmail.com)
+
+Version:
+    1.0.0
+
+Release Date:
+    May 9th, 2023
+
 """
 
-import pandas as pd
-import numpy as np
-from sklearn.preprocessing import OneHotEncoder
 from typing import Tuple
+
+import numpy as np
+import pandas as pd
+from sklearn.preprocessing import OneHotEncoder
 
 
 def _convert_to_date(date: pd.Series) -> pd.Series:
@@ -38,8 +50,7 @@ def merge_dataframes(*dfs: Tuple[pd.DataFrame]) -> pd.DataFrame:
         Merged dataframe.
     """
 
-    # Concatenate all dataframes in one single dataframe
-    print(dfs[-1])
+    # Remove the dummy input (to ensure execution order) and concatenate all dataframes in one single dataframe
     df_merged = pd.concat(dfs[:-1])
 
     # Replace any blank cells that might exist with NaN
@@ -65,18 +76,16 @@ def merge_dataframes(*dfs: Tuple[pd.DataFrame]) -> pd.DataFrame:
     df_merged["CD_SELIC"] = _convert_to_int(df_merged["CD_SELIC"])
     df_merged["CD_SELIC"] = df_merged["CD_SELIC"].astype(str).replace("<NA>", np.nan)
 
-    print(df_merged.info())
-
     return df_merged
 
 
 def sum_vl_mercado(df: pd.DataFrame) -> pd.DataFrame:
-    """Merges the raw dataframes.
+    """Generates a dataframe grouped by fund with the sum of VL_MERC_POS_FINAL.
 
     Args:
         df: Merged dataframe.
     Returns:
-        Aggregated dataframe.
+        Grouped dataframe with VL_MERC_POS_FINAL column summed.
     """
 
     # Keep only the columns that identify a fund + TP_ATIVO + VL_MERC_POS_FINAL
@@ -85,17 +94,18 @@ def sum_vl_mercado(df: pd.DataFrame) -> pd.DataFrame:
     df = df.dropna()
     df = df.reset_index(drop=True)
 
+    # Group by fund and sum the VL_MERC_POS_FINAL column
     grouped_df = df.groupby(["CNPJ_FUNDO", "DENOM_SOCIAL", "TP_FUNDO", "TP_ATIVO"]).sum().reset_index()
     return grouped_df
 
 
 def encode_tp_ativo(df: pd.DataFrame) -> pd.DataFrame:
-    """Merges the raw dataframes.
+    """Generates a dataframe grouped by fund with a one-hot encoding for the types of assets (TP_ATIVO column).
 
     Args:
         df: Merged dataframe.
     Returns:
-        Aggregated dataframe.
+        Grouped dataframe with a one-hot encoding for the TP_ATIVO column.
     """
 
     # Keep only the columns that identify a fund + TP_ATIVO
@@ -103,7 +113,6 @@ def encode_tp_ativo(df: pd.DataFrame) -> pd.DataFrame:
     # Remove the rows that have non-values
     df = df.dropna()
     df = df.reset_index(drop=True)
-    # print(df.info())
 
     # Create a one-hot encoder object
     encoder = OneHotEncoder()
@@ -139,5 +148,3 @@ def export_to_postgresql(*df: Tuple[pd.DataFrame]) -> Tuple[pd.DataFrame]:
     """
 
     return df
-
-

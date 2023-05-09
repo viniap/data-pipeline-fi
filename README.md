@@ -1,122 +1,57 @@
-# Data Pipeline FI
+# Execution Steps
 
-## Overview
+## Execution without Docker
 
-This is your new Kedro project, which was generated using `Kedro 0.18.7`.
+### 1. Clone the repository
+The first step is to clone this repository to a local folder. To do so, run the following command in the terminal (Linux) or PowerShell (Windows, as admin) inside the local folder:
 
-Take a look at the [Kedro documentation](https://docs.kedro.org) to get started.
+```
+git clone https://github.com/viniap/data-pipeline-fi.git
+```
 
-## Rules and guidelines
+### 2. Create a Pyhton virtual environment
+The second step is to create a virtual environment inside the repository folder. To do so, run the following commands in the terminal:
 
-In order to get the best out of the template:
+```
+cd data-pipeline-fi
 
-* Don't remove any lines from the `.gitignore` file we provide
-* Make sure your results can be reproduced by following a data engineering convention
-* Don't commit data to your repository
-* Don't commit any credentials or your local configuration to your repository. Keep all your credentials and local configuration in `conf/local/`
+python3 -m venv .venv   # Linux
+python -m venv .venv    # Windows
+```
 
-## How to install dependencies
+To activate the virtual environment, run the following command:
 
-Declare any dependencies in `src/requirements.txt` for `pip` installation and `src/environment.yml` for `conda` installation.
+```
+source .venv/bin/activate   # Linux
+.\.venv\Scripts\Activate    # Windows
+```
 
-To install them, run:
+### 3. Install dependencies
+
+To be able to run the application, you need to install all the dependencies. To do so, run the following command:
 
 ```
 pip install -r src/requirements.txt
 ```
 
-## How to run your Kedro pipeline
+On Windows, if you get a permission related error during installation, run the above command again and it will finish installing the remaining packages.
 
-You can run your Kedro project with:
+### 4. Create credentials.yml
+
+To be able to connect to a PostgreSQL database, you will need to create a `credentials.yml` file inside the `data-pipeline-fi/conf/local` folder. Inside the `credentials.yml` write:
+
+``` yaml
+# credentials.yml
+postgresql_credentials:
+  con: postgresql+psycopg2://user:password@host:port/database
+```
+
+Where the words `user`, `password`, `host`, `port` and `database` must be replaced by valid values in order to connect to a existing database.
+
+### 5. Run
+
+If you followed the previous steps, now you are able to run de project. Make sure the database already exists and is active. Write the following in the terminal or PowerShell:
 
 ```
 kedro run
 ```
-
-## How to test your Kedro project
-
-Have a look at the file `src/tests/test_run.py` for instructions on how to write your tests. You can run your tests as follows:
-
-```
-kedro test
-```
-
-To configure the coverage threshold, go to the `.coveragerc` file.
-
-## Project dependencies
-
-To generate or update the dependency requirements for your project:
-
-```
-kedro build-reqs
-```
-
-This will `pip-compile` the contents of `src/requirements.txt` into a new file `src/requirements.lock`. You can see the output of the resolution by opening `src/requirements.lock`.
-
-After this, if you'd like to update your project requirements, please update `src/requirements.txt` and re-run `kedro build-reqs`.
-
-[Further information about project dependencies](https://docs.kedro.org/en/stable/kedro_project_setup/dependencies.html#project-specific-dependencies)
-
-## How to work with Kedro and notebooks
-
-> Note: Using `kedro jupyter` or `kedro ipython` to run your notebook provides these variables in scope: `context`, `catalog`, and `startup_error`.
->
-> Jupyter, JupyterLab, and IPython are already included in the project requirements by default, so once you have run `pip install -r src/requirements.txt` you will not need to take any extra steps before you use them.
-
-### Jupyter
-To use Jupyter notebooks in your Kedro project, you need to install Jupyter:
-
-```
-pip install jupyter
-```
-
-After installing Jupyter, you can start a local notebook server:
-
-```
-kedro jupyter notebook
-```
-
-### JupyterLab
-To use JupyterLab, you need to install it:
-
-```
-pip install jupyterlab
-```
-
-You can also start JupyterLab:
-
-```
-kedro jupyter lab
-```
-
-### IPython
-And if you want to run an IPython session:
-
-```
-kedro ipython
-```
-
-### How to convert notebook cells to nodes in a Kedro project
-You can move notebook code over into a Kedro project structure using a mixture of [cell tagging](https://jupyter-notebook.readthedocs.io/en/stable/changelog.html#release-5-0-0) and Kedro CLI commands.
-
-By adding the `node` tag to a cell and running the command below, the cell's source code will be copied over to a Python file within `src/<package_name>/nodes/`:
-
-```
-kedro jupyter convert <filepath_to_my_notebook>
-```
-> *Note:* The name of the Python file matches the name of the original notebook.
-
-Alternatively, you may want to transform all your notebooks in one go. Run the following command to convert all notebook files found in the project root directory and under any of its sub-folders:
-
-```
-kedro jupyter convert --all
-```
-
-### How to ignore notebook output cells in `git`
-To automatically strip out all output cell contents before committing to `git`, you can run `kedro activate-nbstripout`. This will add a hook in `.git/config` which will run `nbstripout` before anything is committed to `git`.
-
-> *Note:* Your output cells will be retained locally.
-
-## Package your Kedro project
-
-[Further information about building project documentation and packaging your project](https://docs.kedro.org/en/stable/tutorial/package_a_project.html)

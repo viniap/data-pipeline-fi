@@ -55,3 +55,44 @@ If you followed the previous steps, now you are able to run de project. Make sur
 ```
 kedro run
 ```
+
+You can choose which months of 2022 you want to download the source files from https://dados.cvm.gov.br/dados/FI/DOC/CDA/DADOS/ by modifying the `data-pipeline-fi/conf/base/parameters/data_acquisition.yml` file.
+
+## Execution with Docker (not working)
+
+### 1. Clone the repository
+The first step is to clone this repository to a local folder. To do so, run the following command in the terminal (Linux) or PowerShell (Windows, as admin) inside the local folder:
+
+```
+git clone https://github.com/viniap/data-pipeline-fi.git
+```
+
+### 2. Create credentials.yml
+
+To be able to connect to a PostgreSQL database, you will need to create a `credentials.yml` file inside the `data-pipeline-fi/conf/local` folder. Inside the `credentials.yml` write:
+
+``` yaml
+# credentials.yml
+postgresql_credentials:
+  con: postgresql+psycopg2://postgres:password@host:5432/data_pipeline_fi
+```
+
+Where the words `password` and `host` must be replaced by valid values.
+
+### 3. Edit the Dockerfile
+
+Put the same password above in `line 10` of `Dockerfile`.
+
+### 4. Build the image
+
+Run the following command to build the docker image from Dockerfile.
+
+```
+kedro docker build
+```
+
+### 5. Run the container
+
+```
+kedro docker run
+```
